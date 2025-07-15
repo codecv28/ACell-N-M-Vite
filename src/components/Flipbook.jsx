@@ -42,34 +42,27 @@ const Pages = React.forwardRef(({ children, number }, ref) => {
 Pages.displayName = "Pages";
 
 const Flipbook = () => {
-    const view_individual_Flipbook_Value = useContext(
-        view_individual_Flipbook_Context
-    );
+    const view_individual_Flipbook_Value = useContext(view_individual_Flipbook_Context);
     const { pdf } = useContext(pdf_Context);
 
     const [numPages, setNumPages] = useState(null);
-    const [currentPage, setCurrentPage] = useState(0);
-        const [isFullscreen, setIsFullscreen] = useState(false)
-
+    const [isFullscreen, setIsFullscreen] = useState(false)
 
     const flipBookRef = useRef(null);
     const flipbookContainerRef = useRef(null);
 
     useEffect(() => {
-  const handleFullscreenChange = () => {
-    setIsFullscreen(!!document.fullscreenElement);
-  };
-  document.addEventListener("fullscreenchange", handleFullscreenChange);
-  return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
-}, []);
+        const handleFullscreenChange = () => {
+            setIsFullscreen(!!document.fullscreenElement);
+        };
+        document.addEventListener("fullscreenchange", handleFullscreenChange);
+        return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    }, []);
+
 
     const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages);
         console.log(numPages);
-    };
-
-    const onFlip = (e) => {
-        setCurrentPage(e.data);
     };
 
     const handleFullscreen = () => {
@@ -86,7 +79,6 @@ const Flipbook = () => {
         }
     };
 
-
     const handleShare = () => {
         if (navigator.share) {
             navigator.share(
@@ -101,7 +93,6 @@ const Flipbook = () => {
             alert('Web Share is not supported on this browser.');
         }
     }
-
 
     return (
         <>
@@ -152,8 +143,9 @@ const Flipbook = () => {
                             maxHeight={FLIPBOOK_HEIGHT}
                             drawShadow={true}
                             useMouseEvents={true}
-                            onFlip={onFlip}
-                            className={`rounded bg-transparent transition-transform duration-300 mx-auto ${isFullscreen ? "scale-150" : "scale-100"}`}                        >
+                            className={`rounded bg-transparent transition-transform duration-300 mx-auto ${isFullscreen ? "scale-150" : (window.innerWidth < 500) ? (window.innerWidth < 400) ? "scale-50" : "scale-75" : "scale-100"
+                                }`}
+                        >
                             {Array.from(new Array(numPages), (_, i) => (
                                 <Pages
                                     key={i}
@@ -185,7 +177,7 @@ const Flipbook = () => {
                         />
                     </div>
                 </div>
-            </main>
+            </main >
         </>
     );
 };
