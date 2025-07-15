@@ -1,16 +1,14 @@
-import React, { useState, useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { FaArrowCircleLeft, FaArrowCircleRight, FaDownload, FaExpand, FaShareAlt } from 'react-icons/fa'
 import HTMLFlipBook from "react-pageflip";
 import { Document, Page, pdfjs } from "react-pdf";
 import pdfFile from "/Comic_book_English.pdf";
-import { useContext } from "react";
 import { view_Gallery_Context } from "../context/context";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
-const is_SmallScreen = window.innerWidth < 640
-const FLIPBOOK_WIDTH = is_SmallScreen ? 215 : 430;
-const FLIPBOOK_HEIGHT = is_SmallScreen ? 275 : 550;
+const FLIPBOOK_WIDTH = 430;
+const FLIPBOOK_HEIGHT = 550;
 
 const Pages = React.forwardRef(({ children, number }, ref) => {
     return (
@@ -41,29 +39,23 @@ const Magazine = () => {
     const view_Gallery_Value = useContext(view_Gallery_Context)
 
     const [numPages, setNumPages] = useState(null);
-    const [currentPage, setCurrentPage] = useState(0);
     const [isFullscreen, setIsFullscreen] = useState(false)
+
     const flipBookRef = useRef(null);
     const flipbookContainerRef = useRef(null);
 
     useEffect(() => {
-  const handleFullscreenChange = () => {
-    setIsFullscreen(!!document.fullscreenElement);
-  };
-  document.addEventListener("fullscreenchange", handleFullscreenChange);
-  return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
-}, []);
-
-
+        const handleFullscreenChange = () => {
+            setIsFullscreen(!!document.fullscreenElement);
+        };
+        document.addEventListener("fullscreenchange", handleFullscreenChange);
+        return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    }, []);
 
 
     const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages);
         console.log(numPages)
-    };
-
-    const onFlip = (e) => {
-        setCurrentPage(e.data);
     };
 
     const handleFullscreen = () => {
@@ -95,11 +87,6 @@ const Magazine = () => {
         }
     }
 
-    // Determine if we're showing cover (single page) or spread (two pages)
-    const isShowingCover = currentPage === 0;
-    const isShowingCoverBack = currentPage === numPages - 1;
-    const transformStyle = isShowingCover || isShowingCoverBack ? 'translate-x-0' : '-translate-x-52';
-
     return (
         <>
             <nav className='bg-[#4B9994] p-3 text-white font-bold text-center fixed w-full z-50 top-0'>
@@ -110,7 +97,7 @@ const Magazine = () => {
                     <h1 className='text-3xl font-bold font-inter'>Discover Stories Inside Our MAGAZINE</h1>
                     <p className='mt-2'>Our annual alumni magazine captures the spirit of our vibrant community—featuring inspiring journeys, professional milestones, campus nostalgia, and memorable moments. Each edition is a curated collection of voices and stories that celebrate the legacy we all share.</p>
                 </div>
-                <div className="contentSection bg-[#B9CDC0] rounded-2xl mx-0 sm:mx-10  p-5 px-1 sm:px-10 mt-7 overflow-hidden">
+                <div className="contentSection bg-[#B9CDC0] rounded-2xl mx-0 sm:mx-10  p-5 px-1 sm:px-1 lg:px-10 mt-7 overflow-hidden">
                     <div className='part1 flex justify-between'>
                         <h1 className='font-bold text-3xl italic'>Magazine '25</h1>
                         <div className='flex justify-between gap-2 sm:gap-5 list-none mt-3'>
@@ -136,10 +123,8 @@ const Magazine = () => {
                             maxHeight={FLIPBOOK_HEIGHT}
                             drawShadow={true}
                             useMouseEvents={true}
-                            onFlip={onFlip}
-                            className={`rounded bg-transparent transition-transform duration-300 mx-auto ${
-    isFullscreen ? "scale-150" : "scale-100"
-  }`}
+                            className={`rounded bg-transparent transition-transform duration-300 mx-auto ${isFullscreen ? "scale-150" : (window.innerWidth < 500) ? (window.innerWidth < 400) ? "scale-50" : "scale-75" : "scale-100"
+                                }`}
                         >
                             {Array.from(new Array(numPages), (_, i) => (
                                 <Pages key={i} number={i + 1} width={FLIPBOOK_WIDTH} height={FLIPBOOK_HEIGHT}>
