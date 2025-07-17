@@ -1,14 +1,15 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, {useContext, useEffect } from "react";
 import { FaArrowLeft } from 'react-icons/fa'
-import { view_Gallery_Context, view_individual_Flipbook_Context } from "../context/context";
-import { pdf_Context } from "../context/context";
+import { view_Gallery_Context, view_individual_Flipbook_Context } from "../context/NMcontext";
+import { pdf_Context } from "../context/NMcontext";
 
 //importing pdf from public folder
-import pdf_1 from "/Comic_book_English.pdf"
-import pdf_2 from "/Comic_book_Hindi.pdf"
-import pdf_3 from "/comic_book.pdf"
+import pdf_1 from "/vol_1_issue_1.pdf"
+import pdf_2 from "/vol_1_issue_2.pdf"
+import pdf_3 from "/vol_1_issue_3.pdf"
+import pdf_4 from "/vol_1_issue_4.pdf"
 
-const MGallery = () => {
+const NGallery = () => {
 
     const view_Gallery_Value = useContext(view_Gallery_Context)
     const view_individual_Flipbook_Value = useContext(view_individual_Flipbook_Context)
@@ -41,24 +42,28 @@ const MGallery = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-5 xl:mx-25 mt-5">
 
-                    <div onClick={() => open_Book(pdf_1)} className="card bg-[#B9CDC0] m-2 p-5 w-fit rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg hover:shadow-black">
-                        <h1 className="text-center font-bold text-2xl">Title</h1>
-                        <p className="mx-auto text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum velit deleniti, perspiciatis quasi ipsa impedit porro nesciunt molestias fuga laborum optio laudantium iure necessitatibus doloremque debitis vel et quibusdam? Ipsum culpa beatae eveniet vero.</p>
-                    </div>
-
-                    <div onClick={() => open_Book(pdf_2)} className="card bg-[#B9CDC0] m-2 p-5 w-fit rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg hover:shadow-black">
-                        <h1 className="text-center font-bold text-2xl">Title</h1>
-                        <p className="mx-auto text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum velit deleniti, perspiciatis quasi ipsa impedit porro nesciunt molestias fuga laborum optio laudantium iure necessitatibus doloremque debitis vel et quibusdam? Ipsum culpa beatae eveniet vero.</p>
+                    <div onClick={() => open_Book(pdf_4)} className="card bg-[#B9CDC0] m-2 p-5 w-fit rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg hover:shadow-black">
+                        <h1 className="text-center font-bold text-3xl">POD Pulse</h1>
+                        <h2 className="text-center font-bold italic text-xl">Volume 1, Issue 4</h2>
+                        <p className="mx-auto text-center">A roundup of recent institute initiatives, student activities, and faculty achievements showcasing the dynamic progress of IIT Indore</p>
                     </div>
 
                     <div onClick={() => open_Book(pdf_3)} className="card bg-[#B9CDC0] m-2 p-5 w-fit rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg hover:shadow-black">
-                        <h1 className="text-center font-bold text-2xl">Title</h1>
-                        <p className="mx-auto text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum velit deleniti, perspiciatis quasi ipsa impedit porro nesciunt molestias fuga laborum optio laudantium iure necessitatibus doloremque debitis vel et quibusdam? Ipsum culpa beatae eveniet vero.</p>
+                        <h1 className="text-center font-bold text-3xl">POD Pulse</h1>
+                        <h2 className="text-center font-bold italic text-xl">Volume 1, Issue 3</h2>
+                        <p className="mx-auto text-center">Discover the journey of IIT Indore, its unique interdisciplinary approach, and the diverse opportunities it offers to students and researchers</p>
+                    </div>
+
+                    <div onClick={() => open_Book(pdf_2)} className="card bg-[#B9CDC0] m-2 p-5 w-fit rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg hover:shadow-black">
+                        <h1 className="text-center font-bold text-3xl">POD Pulse</h1>
+                        <h2 className="text-center font-bold italic text-xl">Volume 1, Issue 2</h2>
+                        <p className="mx-auto text-center">An in-depth introduction to IIT Indore—its vision, legacy, infrastructure, and the academic culture that fosters innovation and excellence</p>
                     </div>
 
                     <div onClick={() => open_Book(pdf_1)} className="card bg-[#B9CDC0] m-2 p-5 w-fit rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg hover:shadow-black">
-                        <h1 className="text-center font-bold text-2xl">Title</h1>
-                        <p className="mx-auto text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum velit deleniti, perspiciatis quasi ipsa impedit porro nesciunt molestias fuga laborum optio laudantium iure necessitatibus doloremque debitis vel et quibusdam? Ipsum culpa beatae eveniet vero.</p>
+                        <h1 className="text-center font-bold text-3xl">POD Pulse</h1>
+                        <h2 className="text-center font-bold italic text-xl">Volume 1, Issue 1</h2>
+                        <p className="mx-auto text-center">Highlights from key institute events, achievements, and milestones that reflect the vibrant academic and cultural life of IIT Indore</p>
                     </div>
 
                 </div>
@@ -67,4 +72,4 @@ const MGallery = () => {
     )
 }
 
-export default MGallery
+export default NGallery

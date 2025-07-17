@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
 import { FaArrowLeft } from 'react-icons/fa'
-import { view_Gallery_Context, view_individual_Flipbook_Context } from "../context/context";
-import { pdf_Context } from "../context/context";
+import { view_Gallery_Context, view_individual_Flipbook_Context } from "../context/NMcontext";
+import { pdf_Context } from "../context/NMcontext";
 
 //importing pdf from public folder
 import pdf_1 from "/Comic_book_English.pdf"

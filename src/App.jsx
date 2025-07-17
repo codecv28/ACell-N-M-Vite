@@ -1,12 +1,11 @@
 import { React, useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
-import Newsletter from './components/Newsletter'
-import NGallery from './components/NGallery'
-import Magazine from './components/Magazine'
-import MGallery from './components/MGallery'
-import Flipbook from './components/Flipbook'
-import { view_Gallery_Context, view_individual_Flipbook_Context, pdf_Context } from './context/context'
+import Newsletter from './Components/Newsletter'
+import NGallery from './Components/NGallery'
+import Magazine from './Components/Magazine'
+import MGallery from './Components/MGallery'
+import Flipbook from './Components/Flipbook'
+import { view_Gallery_Context, view_individual_Flipbook_Context, pdf_Context } from './context/NMcontext'
 
 function App() {
   const [view_Gallery, setView_Gallery] = useState(false)

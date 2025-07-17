@@ -7,10 +7,10 @@ import {
     FaExpand,
     FaShareAlt,
 } from "react-icons/fa";
-import { view_individual_Flipbook_Context } from "../context/context";
+import { view_individual_Flipbook_Context } from "../context/NMcontext";
 import HTMLFlipBook from "react-pageflip";
 import { Document, Page, pdfjs } from "react-pdf";
-import { pdf_Context } from "../context/context";
+import { pdf_Context } from "../context/NMcontext";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -34,7 +34,6 @@ const Pages = React.forwardRef(({ children, number }, ref) => {
             }}
         >
             {children}
-            <p className="text-sm mt-1">Page {number}</p>
         </div>
     );
 });
@@ -143,7 +142,7 @@ const Flipbook = () => {
                             maxHeight={FLIPBOOK_HEIGHT}
                             drawShadow={true}
                             useMouseEvents={true}
-                            className={`rounded bg-transparent transition-transform duration-300 mx-auto ${isFullscreen ? "scale-150" : (window.innerWidth < 500) ? (window.innerWidth < 400) ? "scale-50" : "scale-75" : "scale-100"
+                            className={`rounded bg-transparent transition-transform duration-300 mx-auto ${isFullscreen ? "scale-120" : (window.innerWidth < 500) ? (window.innerWidth < 400) ? "scale-50" : "scale-75" : "scale-100"
                                 }`}
                         >
                             {Array.from(new Array(numPages), (_, i) => (
