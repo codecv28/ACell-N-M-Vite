@@ -3,7 +3,7 @@ import { FaArrowCircleLeft, FaArrowCircleRight, FaDownload, FaExpand, FaShareAlt
 import HTMLFlipBook from "react-pageflip";
 import { Document, Page, pdfjs } from "react-pdf";
 import pdfFile from "/Comic_book_English.pdf";
-import { view_Gallery_Context } from "../context/context";
+import { view_Gallery_Context } from "../context/NMcontext";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
